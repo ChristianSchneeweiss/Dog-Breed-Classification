@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dog Breed Predictions</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container text-center mb-5">
+    <h1>Dog Breed Predictions</h1>
+
+    <form action="/predict" method="post" class="mb-4">
+        <div class="form-group">
+            <label>Choose an image of a dog to let it predict its race
+                <input class="form-control-file" id="file" name="file" type="file">
+            </label>
+        </div>
+        <button class="btn btn-primary" id="Predict" type="button" disabled>Predict</button>
+    </form>
+
+    <div class="justify-content-center row">
+        <div id="card" class="card d-none col-6">
+            <img class="card-img-top p-3" id="img" src="" alt="dog">
+            <div class="card-body">
+                <p class="card-title" id="prediction-text"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/requests.js"></script>
+</body>
+</html>
