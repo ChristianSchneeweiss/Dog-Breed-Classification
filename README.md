@@ -1,6 +1,6 @@
 # Dog-Breed-Classification
 
-I found [this](https://www.kaggle.com/jessicali9530/stanford-dogs-dataset) Dataset on Kaggle on wanted to try how good I can train a Deep Learning model on it. 
+I found [this](https://www.kaggle.com/jessicali9530/stanford-dogs-dataset) Dataset on Kaggle on wanted to try how good I can train a Deep Learning model on it. The Kaggle Kernel I created - [kernel](https://www.kaggle.com/waterchiller/vgg16-classification-dog-breed)
 
 My first attempt is transfer learning with a VGG16 model trained on Imagenet which only got me an accuracy of up to 61%.
 
