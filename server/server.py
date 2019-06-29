@@ -1,11 +1,25 @@
+import logging
+import pickle
+
 import cv2
+import argparse
 import numpy as np
 import tensorflow as tf
 from flask import Flask, request, jsonify
 from tensorflow.keras.models import load_model
 from tensorflow.python.keras.backend import set_session
-import pickle
-from sklearn.preprocessing import LabelEncoder
+
+tf_logger = logging.getLogger("tensorflow")
+tf_logger.setLevel(logging.ERROR)
+
+logger = logging.getLogger("server")
+logger.setLevel(logging.INFO)
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--model", "-m", type=str, help="An optional model name argument")
+
+args = parser.parse_args()
+model_name = args.model if args.model else "mobilenet"
 
 app = Flask(__name__, static_url_path="/static")
 
@@ -15,12 +29,16 @@ graph = tf.get_default_graph()
 set_session(sess)
 
 model_names = {
-    "NASNetMobile": ["nasnetmobile-model-0.81acc-0.70loss-1561201841.hdf5", (224, 224)],
-    "NASNetLarge": ["nasnetlarge-model-0.94acc-0.28loss-1561191444.hdf5", (331, 331)],
-    "MobileNetV2": ["mobilenetv2-model-0.73acc-0.92loss-1561064081.hdf5", (224, 224)]
+    "nasnetmobile": ["nasnetmobile-model-0.81acc-0.70loss-1561201841.hdf5", (224, 224)],
+    "nasnetlarge": ["nasnetlarge-model-0.94acc-0.28loss-1561191444.hdf5", (331, 331)],
+    "mobilenet": ["mobilenetv2-model-0.73acc-0.92loss-1561064081.hdf5", (224, 224)]
 }
 
-model_name = "MobileNetV2"
+if model_name not in model_names.keys():
+    logger.critical(f"Error: {model_name} is not available")
+    quit(1)
+
+logger.info(f"Chosen model is {model_name}")
 
 model = load_model(f"../models/{model_names[model_name][0]}")
 model._make_predict_function()
