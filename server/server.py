@@ -14,13 +14,23 @@ graph = tf.get_default_graph()
 
 set_session(sess)
 
-model = load_model("../models/vgg16-model-0.61acc-1.46loss-1560804023.hdf5")
+model_names = {
+    "NASNetMobile": ["nasnetmobile-model-0.81acc-0.70loss-1561201841.hdf5", (224, 224)],
+    "NASNetLarge": ["nasnetlarge-model-0.94acc-0.28loss-1561191444.hdf5", (331, 331)],
+    "MobileNetV2": ["mobilenetv2-model-0.73acc-0.92loss-1561064081.hdf5", (224, 224)]
+}
+
+model_name = "MobileNetV2"
+
+model = load_model(f"../models/{model_names[model_name][0]}")
 model._make_predict_function()
 graph = tf.get_default_graph()
 
-pkl_file = open('../vgg16_encoder.pkl', 'rb')
-encoder = pickle.load(pkl_file)
+pkl_file = open('../classes.pickle', 'rb')
+classes = pickle.load(pkl_file)
 pkl_file.close()
+
+classes = {v: k for k, v in classes.items()}
 
 
 def make_prediction(img):
@@ -39,18 +49,29 @@ def root():
 
 @app.route("/predict", methods=["POST"])
 def predict():
-    label_predicts = "No prediction"
+    label_predict = "No prediction"
     if request.method == 'POST':
         filestr = request.files['file'].read()
         npimg = np.frombuffer(filestr, np.uint8)
         imageBGR = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
-        img = cv2.cvtColor(imageBGR, cv2.COLOR_BGR2RGB)
-        img = cv2.resize(img, (224, 224))
-        preds = make_prediction(img)
-        preds = preds.argmax()
-        label_predicts = encoder.inverse_transform(np.array([preds]))
+        img = preprocess_image(imageBGR)
+        label_predict = make_label_prediction(img)
     
-    return jsonify({"prediction": label_predicts[0]})
+    return jsonify({"prediction": label_predict})
+
+
+def make_label_prediction(img):
+    preds = make_prediction(img)
+    preds = preds.argmax()
+    label_predict = classes[preds]
+    return label_predict
+
+
+def preprocess_image(imageBGR):
+    img = cv2.cvtColor(imageBGR, cv2.COLOR_BGR2RGB)
+    img = cv2.resize(img, model_names[model_name][1])
+    img = img / 255
+    return img
 
 
 app.run()

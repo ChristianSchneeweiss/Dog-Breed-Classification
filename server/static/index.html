@@ -5,9 +5,10 @@
     <title>Dog Breed Predictions</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-<div class="container text-center mb-5">
+<div class="container text-center mb-5 mt-5">
     <h1>Dog Breed Predictions</h1>
 
     <form action="/predict" method="post" class="mb-4">
@@ -16,18 +17,27 @@
                 <input class="form-control-file" id="file" name="file" type="file">
             </label>
         </div>
-        <button class="btn btn-primary" id="Predict" type="button" disabled>Predict</button>
     </form>
 
     <div class="justify-content-center row">
-        <div id="card" class="card d-none col-6">
+        <div id="card" class="card d-none col-6 text-left">
             <img class="card-img-top p-3" id="img" src="" alt="dog">
             <div class="card-body">
-                <p class="card-title" id="prediction-text"></p>
+                <p class="card-title mb-3 mt-0" id="prediction-text"></p>
+                <button class="btn btn-primary" id="predict" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                    <span id="btn-predict-label">Predict!</span>
+                </button>
             </div>
         </div>
     </div>
 </div>
+
+<footer class="footer">
+    <div class="container text-center">
+        <a href="https://github.com/ChristianSchneeweiss/Dog-Breed-Classification">GitHub Repository</a>
+    </div>
+</footer>
 
 <script src="/static/requests.js"></script>
 </body>

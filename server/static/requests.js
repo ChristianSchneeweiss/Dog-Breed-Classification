@@ -1,29 +1,38 @@
-document.querySelector("#Predict").addEventListener("click", () => {
+const predictionLabel = document.querySelector("#prediction-text");
+const spinner = document.querySelector("span.spinner-border");
+const predictionButtonLabel = document.querySelector("#btn-predict-label");
+
+let data = {};
+
+document.querySelector("#predict").addEventListener("click", () => {
+    predictionLabel.innerHTML = "";
+    spinner.classList.remove("d-none");
+    predictionButtonLabel.innerHTML = "predicting...";
     postData("http://localhost:5000/predict", data)
 });
 
 inputElement = document.querySelector("#file");
+
 inputElement.onchange = function (event) {
     data = new FormData();
     const file = inputElement.files[0];
     data.append("file", file);
     const preview = document.querySelector("#img");
-    const reader  = new FileReader();
+    const reader = new FileReader();
 
-   reader.onloadend = function () {
-       preview.src = reader.result;
-   };
+    reader.onloadend = function () {
+        preview.src = reader.result;
+    };
 
-   if (file) {
-       reader.readAsDataURL(file); //reads the data as a URL
-   } else {
-       preview.src = "";
-   }
+    if (file) {
+        reader.readAsDataURL(file); //reads the data as a URL
+    } else {
+        preview.src = "";
+    }
 
     document.querySelector("#card").classList.remove("d-none");
-   document.querySelector(".btn.btn-primary").removeAttribute("disabled")
+    document.querySelector(".btn.btn-primary").removeAttribute("disabled")
 };
-let data = {};
 
 function postData(url = '', data) {
     // Default options are marked with *
@@ -41,7 +50,8 @@ function postData(url = '', data) {
         body: data // body data type must match "Content-Type" header
     })
         .then(async response => {
-            const prediction = (await response.json()).prediction;
-            document.querySelector("#prediction-text").innerHTML = prediction;
+            predictionLabel.innerHTML = (await response.json()).prediction;
+            spinner.classList.add("d-none");
+            predictionButtonLabel.innerHTML = "Predict!";
         });
 }
