@@ -61,7 +61,6 @@ def make_prediction(img):
 
 @app.route('/')
 def root():
-    # return "Hello World"
     return app.send_static_file("index.html")
 
 

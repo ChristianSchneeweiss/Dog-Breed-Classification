@@ -103,6 +103,9 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+.environment
+server/.idea
+
 /stanford-dogs-dataset/
 
 models/efficientnetb0-model-0\.64acc-1\.30loss-1560888742\.hdf5
