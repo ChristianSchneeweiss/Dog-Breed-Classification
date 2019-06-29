@@ -105,5 +105,26 @@ venv.bak/
 
 /stanford-dogs-dataset/
 
-*.hdf5
-/models
+models/efficientnetb0-model-0\.64acc-1\.30loss-1560888742\.hdf5
+
+models/efficientnetb0-model-0\.68acc-1\.65loss-1560901904\.hdf5
+
+models/efficientnetb3-model-0\.69acc-1\.09loss-1561063878\.hdf5
+
+models/efficientnetb3-model-0\.71acc-1\.20loss-1560942388\.hdf5
+
+models/efficientnetb3-model-0\.73acc-1\.26loss-1560980426\.hdf5
+
+models/efficientnetb3-model-0\.76acc-0\.98loss-1560945630\.hdf5
+
+models/EfficientNetB3-transfer-learning\.ipynb
+
+models/inceptionresnetv2-model-0\.83acc-0\.82loss-1561211925\.hdf5
+
+models/inceptionv3-model-0\.77acc-0\.97loss-1561069436\.hdf5
+
+models/mobilenetv2-1\.4alpha-model-0\.75acc-0\.90loss-1561227621\.hdf5
+
+models/vgg16-model-0\.61acc-1\.46loss-1560804023\.hdf5
+
+server/\.idea/workspace\.xml
