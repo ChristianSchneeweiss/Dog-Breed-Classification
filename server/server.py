@@ -1,8 +1,8 @@
+import argparse
 import logging
 import pickle
 
 import cv2
-import argparse
 import numpy as np
 import tensorflow as tf
 from flask import Flask, request, jsonify
