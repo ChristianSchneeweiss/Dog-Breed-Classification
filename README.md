@@ -14,4 +14,4 @@ I found [this](https://www.kaggle.com/jessicali9530/stanford-dogs-dataset) Datas
 
 I expected VGG16 to have better accuracy and EfficientNetB3 to be first place or at least compete for first place. I tuned EfficientNetB3 the most but still was not able to get better results.
 
-To start the server go into the server directory `cd server` and start the server.py script `python server/server.py`. The server uses currently the VGG16 model with 61% accuracy and runs on port `5000`
+To start the server go into the server directory `cd server` and start the server.py script `python server/server.py`. The server uses currently the MobileNetV2 model with 73% accuracy and runs on port `5000`
