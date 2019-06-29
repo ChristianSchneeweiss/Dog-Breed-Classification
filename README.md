@@ -14,4 +14,6 @@ I found [this](https://www.kaggle.com/jessicali9530/stanford-dogs-dataset) Datas
 
 I expected VGG16 to have better accuracy and EfficientNetB3 to be first place or at least compete for first place. I tuned EfficientNetB3 the most but still was not able to get better results.
 
+---
+
 Before doing anything else make sure to install the requirements and pull the models via `git-lfs`.To start the server go into the server directory `cd server` and start the server.py script `python server/server.py`. The server uses currently the MobileNetV2 model with 73% accuracy as default model and runs on port `5000`. Using the `--model` or `-m` flag allows you to choose between `nasnetmobile`, `nasnetlarge` and `mobilenet`.
