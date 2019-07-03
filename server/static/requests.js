@@ -8,7 +8,8 @@ document.querySelector("#predict").addEventListener("click", () => {
     predictionLabel.innerHTML = "";
     spinner.classList.remove("d-none");
     predictionButtonLabel.innerHTML = "predicting...";
-    postData("http://localhost:5000/predict", data)
+    const currentUrl = window.location.href;
+    postData(`${currentUrl}predict`, data)
 });
 
 inputElement = document.querySelector("#file");
