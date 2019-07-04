@@ -1,6 +1,6 @@
 # Dog-Breed-Classification
 
-[![License](https://img.shields.io/badge/Licencse-GNU-blue.svg)](https://github.com/ChristianSchneeweiss/Dog-Breed-Classification/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/License-GNU-blue.svg)](https://github.com/ChristianSchneeweiss/Dog-Breed-Classification/blob/master/LICENSE)
 
 I found [this](https://www.kaggle.com/jessicali9530/stanford-dogs-dataset) Dataset on Kaggle on wanted to try how good I can train a Deep Learning model on it. The Kaggle Kernel I created - [kernel](https://www.kaggle.com/waterchiller/vgg16-classification-dog-breed)
 
