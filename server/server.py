@@ -73,8 +73,15 @@ def predict():
         imageBGR = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
         img = preprocess_image(imageBGR)
         label_predict = make_label_prediction(img)
+        label_predict = clean_label_prediction(label_predict)
     
     return jsonify({"prediction": label_predict})
+
+
+def clean_label_prediction(label_predict):
+    label_predict = label_predict.replace("_", "-").split("-")[1:]
+    label_predict = " ".join(label_predict).title()
+    return label_predict
 
 
 def make_label_prediction(img):
